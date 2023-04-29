@@ -1,10 +1,27 @@
 import Image from "next/image"
+import { useEffect } from 'react';
 import logo from "../public/img/PractiYa_Blanco.png"
 import icono from "../public/img/facebook.png"
 import icono_2 from "../public/img/google.png"
-import {loginWithGoogle} from '../firebase/cliente'
+import { loginWithGoogle } from '../firebase/cliente'
 
 export default function Home() {
+    useEffect(() => {
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        if (signUpButton && signInButton && container) {
+            signUpButton.addEventListener('click', () => {
+                container.classList.add("right-panel-active");
+            });
+
+            signInButton.addEventListener('click', () => {
+                container.classList.remove("right-panel-active");
+            });
+        }
+    }, []);
+
     return (
         <>
             <div class="container" id="container">
